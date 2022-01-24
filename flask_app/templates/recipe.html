@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Recipes</title>
+</head>
+<body>
+    <header class="container">
+        <nav class="d-flex flex-row-reverse justify-content-around">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/recipes/new">Create Recipe</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <main class="container">
+        <div>
+            <h2>{{recipe.name}}</h2>
+            <p>Description: {{recipe.description}}</p>
+            <p>Under 30 Minutes:
+                {% if recipe.under20 == 1 %}
+                Yes
+                {% else %}
+                No
+                {% endif %}
+            </p>
+            <p>Instructions: {{recipe.instructions}}</p>
+            <p>Made On: {{recipe.dateMade.strftime('%Y-%m-%d')}}</p>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

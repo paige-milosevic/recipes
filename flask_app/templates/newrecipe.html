@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Recipes</title>
+</head>
+<body>
+    <header class="container">
+        <nav class="d-flex flex-row-reverse justify-content-around">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/recipes/new">Create Recipe</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <main class="container">
+        <form action="/recipe/create" method='POST'>
+            <h2>Add a New Recipe</h2>
+            {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>Flash!!</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <div class="form-group">
+                <div>
+                    <label for="name">Name:</label>
+                    <input class="form-control" type="text" name="name">
+                </div>
+                <div>
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" name="description" cols="30" rows="10"></textarea>
+                </div>
+                <div>
+                    <label for="instructions">Instructions:</label>
+                    <textarea class="form-control" name="instructions" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="dateMade">Date Made:</label>
+                    <input class="form-control" type="date" name="dateMade">
+                </div>
+                <div>
+                    <label for="1">Under 30 Minutes?</label>
+                    <input type="radio" name="under30" value="0">
+                    <label for="0">No</label>
+                    <input type="radio" name="under30" value="1">
+                    <label for="1">Yes</label>
+                </div>
+                <input class="form-control" type="submit" value="Add Recipe">
+            </div>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
